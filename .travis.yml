@@ -19,16 +19,16 @@ script:
   - docker build -t udagram-api-feed ./udagram-api-feed
   - docker build -t udagram-frontend ./udagram-frontend
   - docker build -t udagram-api-user ./udagram-api-user
-  - docker build -t reverseproxy ./reverseproxy
-  - docker tag udagram-api-feed frederickob/udagram-api-feed:v1
-  - docker tag udagram-frontend frederickob/udagram-frontend:v1
-  - docker tag udagram-api-user frederickob/udagram-api-user:v1
-  - docker tag reverseproxy frederickob/reverseproxy:v1
+  - docker build -t reverseproxy ./udagram-reverseproxy
+  - docker tag udagram-api-feed frederickob/udagram-api-feed:v2
+  - docker tag udagram-frontend frederickob/udagram-frontend:v2
+  - docker tag udagram-api-user frederickob/udagram-api-user:v2
+  - docker tag reverseproxy frederickob/reverseproxy:v2
 
 #Push
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push frederickob/udagram-api-feed:v1
-  - docker push frederickob/udagram-api-user:v1
-  - docker push frederickob/udagram-frontend:v1
-  - docker push frederickob/reverseproxy:v1
+  - docker push frederickob/udagram-api-feed:v2
+  - docker push frederickob/udagram-api-user:v2
+  - docker push frederickob/udagram-frontend:v2
+  - docker push frederickob/reverseproxy:v2
